@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Salon
+namespace Salon_Management_System
 {
     public partial class Default : System.Web.UI.Page
     {
@@ -23,8 +24,8 @@ namespace Salon
 
         protected void btnclick_Click(object sender, EventArgs e)
         {
-            string connectionString = "Data Source=DESKTOP-RN6L47F\\SQLEXPRESS;Initial Catalog=Nursery;Integrated Security=True ";
-            string name = "", hashpass="", namerr = "", contacterr = "", emailerr="",agerr="",passeerr="",genderr="" ;
+            string connectionString = "Data Source=DESKTOP-OE4JH70\\SQLEXPRESS;Initial Catalog=Salon;Integrated Security=True ";
+            string name = "", hashpass = "", namerr = "", contacterr = "", emailerr = "", agerr = "", passeerr = "", genderr = "";
             bool value = true;
             if (!string.IsNullOrEmpty(txtname.Text.Trim()))
             {
@@ -34,10 +35,10 @@ namespace Salon
             {
                 value = false;
             }
-            int contact = 0;
+            string contact = "";
             if (!string.IsNullOrEmpty(txtcontact.Text.Trim()) || txtcontact.Text.Length != 10)
             {
-                contact=int.Parse(txtcontact.Text.Trim());
+                contact = txtcontact.Text;
             }
             else
             {
@@ -46,7 +47,7 @@ namespace Salon
             }
 
             int age = 0;
-            if (!string.IsNullOrEmpty(txtcontact.Text.Trim()) )
+            if (!string.IsNullOrEmpty(txtcontact.Text.Trim()))
             {
                 age = int.Parse(txtage.Text.Trim());
             }
@@ -57,14 +58,14 @@ namespace Salon
 
 
             string gender = "";
-            if(rbmale.Checked)
+            if (rbmale.Checked)
             {
-                gender=rbmale.Text;
+                gender = rbmale.Text;
 
             }
-            else if(rbfemale.Checked)
+            else if (rbfemale.Checked)
             {
-                gender=rbfemale.Text;   
+                gender = rbfemale.Text;
             }
             else
             {
@@ -72,13 +73,13 @@ namespace Salon
                 genderr = "please select gender";
             }
 
-            string email="";
+            string email = "";
             if (!string.IsNullOrEmpty(txtemail.Text.Trim()))
             {
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    string qry = "SELECT * FROM reg WHERE email = @email";
+                    string qry = "SELECT * FROM tblRegistration WHERE email = @email";
                     using (SqlCommand cmd = new SqlCommand(qry, con))
                     {
                         cmd.Parameters.AddWithValue("@email", txtemail.Text.Trim());
@@ -86,13 +87,13 @@ namespace Salon
                         {
                             if (reader.HasRows)
                             {
-                                
+
                                 value = false;
                                 emailerr = "email is already register";
                             }
                             else
                             {
-                                
+
                                 email = txtemail.Text.Trim();
                             }
                         }
@@ -101,24 +102,25 @@ namespace Salon
             }
             else
             {
-                
+
                 value = false;
             }
 
-            string pass ="";
+            string password = "";
             string conpass = "";
             if (!string.IsNullOrEmpty(txtpass.Text.Trim()) || txtpass.Text.Length >= 15 || txtpass.Text.Length <= 8)
             {
-                pass=txtpass.Text.Trim();
-                hashpass = Hashedpassword(pass);
-                conpass=txtpass.Text.Trim();
-            }else
+                password = txtpass.Text.Trim();
+                hashpass = Hashedpassword(password);
+                conpass = txtpass.Text.Trim();
+            }
+            else
             {
                 value = false;
                 passeerr = "password should be more than 8 characters and less than 15 characters";
 
             }
-            if (value==true)
+            if (value == true)
             {
 
                 try
@@ -128,7 +130,7 @@ namespace Salon
                         conn.Open();
 
 
-                        string query = "insert into reg (name,contact,age,gender,email, pass) VALUES (@name, @contact,@age,@gender,@email,@pass);"+ "SELECT SCOPE_IDENTITY();";
+                        string query = "insert into tblRegistration (name,contact,age,gender,email, password) VALUES (@name, @contact,@age,@gender,@email,@password);" + "SELECT SCOPE_IDENTITY();";
 
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
@@ -137,7 +139,7 @@ namespace Salon
                             cmd.Parameters.AddWithValue("@age", age);
                             cmd.Parameters.AddWithValue("@gender", gender);
                             cmd.Parameters.AddWithValue("@email", email);
-                            cmd.Parameters.AddWithValue("@pass", hashpass);
+                            cmd.Parameters.AddWithValue("@password", hashpass);
 
 
 
@@ -149,15 +151,15 @@ namespace Salon
 
                             if (rowsAffected > 0)
                             {
-                                int newUserId = Convert.ToInt32(cmd.ExecuteScalar());
+                               // int newUserId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                                
-                                Session["uid"] = newUserId;
+
+                               // Session["uid"] = newUserId;
                                 Response.Redirect("welcome.aspx");
                             }
                             else
                             {
-                                
+
                                 Response.Write("No rows were affected.");
                             }
 
@@ -172,19 +174,19 @@ namespace Salon
             }
             else
             {
-                string error = "error" +namerr+"\n"+emailerr+"\n"+contacterr+"\n"+genderr+"\n"+passeerr;
+                string error = "error" + namerr + "\n" + emailerr + "\n" + contacterr + "\n" + genderr + "\n" + passeerr;
                 txterror.Text = error;
             }
-            
-            
+
+
 
         }
 
-        private string Hashedpassword(string pass)
+        private string Hashedpassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
-                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(pass));
+                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
                 return Convert.ToBase64String(hashedBytes);
             }
         }

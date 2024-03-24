@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Salon
+namespace Salon_Management_System
 {
     public partial class welcome : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Write(Session["uid"]);
+            // lblUID.Text = Session["uid"].ToString();
             if (Session["uid"] == null)
             {
                 Response.Redirect("login.aspx");

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Salon.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Salon_Management_System.Default" %>
 
 <!DOCTYPE html>
 
@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="registerForm" runat="server">
         <div>
             <h2>Registration</h2>
         </div>
@@ -35,6 +35,9 @@ Gender:<asp:RadioButton Text="male" ID="rbmale" runat="server" ></asp:RadioButto
         Confirm Password:<asp:TextBox ID="txtconpass" runat="server" type="password" required></asp:TextBox><br /><br />
  </div>
        <asp:Button ID="btnclick" runat="server" Text="register" OnClick="btnclick_Click" />
+        
+        <asp:HyperLink ID="toLogin" runat="server" NavigateUrl="~/login.aspx">Already have an account? </asp:HyperLink>
+        
         <div>
             <asp:Label ID="txterror" runat="server" ForeColor="Red"></asp:Label>
         </div>

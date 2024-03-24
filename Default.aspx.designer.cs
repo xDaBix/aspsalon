@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Salon
+namespace Salon_Management_System
 {
 
 
@@ -15,13 +15,13 @@ namespace Salon
     {
 
         /// <summary>
-        /// form1 control.
+        /// registerForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm registerForm;
 
         /// <summary>
         /// txtname control.
@@ -103,6 +103,15 @@ namespace Salon
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnclick;
+
+        /// <summary>
+        /// toLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink toLogin;
 
         /// <summary>
         /// txterror control.
