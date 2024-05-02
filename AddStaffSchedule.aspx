@@ -75,6 +75,7 @@
 
 </head>
 <body>
+        <% Server.Execute("adminnav.aspx");%>
     <form id="form1" runat="server">
           <div class="container">
             <h2>Assign Stylist Availability</h2>
