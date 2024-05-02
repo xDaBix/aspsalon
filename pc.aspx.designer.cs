@@ -11,7 +11,7 @@ namespace CAT
 {
 
 
-    public partial class Default
+    public partial class pc
     {
 
         /// <summary>
@@ -22,15 +22,6 @@ namespace CAT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// Btnpc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btnpc;
 
         /// <summary>
         /// ProductRepeater control.

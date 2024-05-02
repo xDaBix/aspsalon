@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CAT.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="pc.aspx.cs" Inherits="CAT.pc" %>
 
 <!DOCTYPE html>
 
@@ -9,21 +9,20 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Button ID="Btnpc" Text="PC" runat="server" OnClick="Btnpc_Click" />
             <asp:Repeater ID="ProductRepeater" runat="server">
                 <HeaderTemplate>
                     <table border="1" cellspacing="0">
                         <tr>
-                            <th>Product Name</th>
                             <th>Category ID</th>
+                            <th>Category Name</th>
                             <th>Action</th>
                         </tr>
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td><%# Eval("ProductName") %></td>
                         <td><%# Eval("CategoryID") %></td>
-                        <td><a href='<%# "Update.aspx?id=" + Eval("ProductID") %>'>Update</a></td>
+                        <td><%# Eval("CategoryName") %></td>
+                        <td><a href='<%# "updatepc.aspx?id=" + Eval("CategoryID") %>'>Update</a></td>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
