@@ -9,20 +9,20 @@ using System.Web.UI.WebControls;
 
 namespace CAT
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class pc : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindProductDetails();
+                bindpc();
             }
         }
 
-        private void BindProductDetails()
+        private void bindpc()
         {
             string connectionString = "Data Source=DESKTOP-EVLGQHH\\SQLEXPRESS;Initial Catalog=project;Integrated Security=True";
-            string query = "SELECT * FROM p";
+            string query = "SELECT * FROM pc";
 
             try
             {
@@ -42,18 +42,8 @@ namespace CAT
             }
             catch (Exception ex)
             {
-                // Handle exception
+                
             }
-        }
-
-        protected void Btnpupdate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Btnpc_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("pc.aspx");
         }
     }
 }

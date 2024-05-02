@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace Salon_Management_System
+namespace CAT
 {
     public class Global : System.Web.HttpApplication
     {
