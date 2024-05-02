@@ -15,6 +15,7 @@
                         <tr>
                             <th>Category ID</th>
                             <th>Category Name</th>
+                            <th>types</th>
                             <th>Action</th>
                         </tr>
                 </HeaderTemplate>
@@ -22,6 +23,7 @@
                     <tr>
                         <td><%# Eval("CategoryID") %></td>
                         <td><%# Eval("CategoryName") %></td>
+                        <td><%# Eval("types") %></td>
                         <td><a href='<%# "updatepc.aspx?id=" + Eval("CategoryID") %>'>Update</a></td>
                     </tr>
                 </ItemTemplate>

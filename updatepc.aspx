@@ -12,6 +12,10 @@
             <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
 
             <asp:TextBox ID="txtProductName" runat="server"></asp:TextBox><br />
+            <asp:DropDownList ID="ddltypes" runat="server">
+                <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
+                <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
+            </asp:DropDownList><br />
 
             <asp:Button ID="btnupdatepc" runat="server" Text="PC" OnClick="btnupdatepc_Click" />
         </div>

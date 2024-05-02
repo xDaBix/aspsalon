@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace CAT
 {
@@ -26,9 +27,10 @@ namespace CAT
         {
             int categoryId = Convert.ToInt32(Request.QueryString["id"]);
             string categoryName = txtProductName.Text;
+            string types = ddltypes.SelectedValue;
             string connectionString = "Data Source=DESKTOP-EVLGQHH\\SQLEXPRESS;Initial Catalog=project;Integrated Security=True";
 
-            string updateQuery = "UPDATE pc SET CategoryName = @CategoryName WHERE CategoryID = @CategoryID";
+            string updateQuery = "UPDATE pc SET CategoryName = @CategoryName, types = @types WHERE CategoryID = @CategoryID";
 
             try
             {
@@ -38,6 +40,7 @@ namespace CAT
                     {
                         command.Parameters.AddWithValue("@CategoryName", categoryName);
                         command.Parameters.AddWithValue("@CategoryID", categoryId);
+                        command.Parameters.AddWithValue("@types", types);
 
                         connection.Open();
                         int rowsAffected = command.ExecuteNonQuery();
@@ -62,7 +65,7 @@ namespace CAT
         private void LoadCat(int categoryId)
         {
             string connectionString = "Data Source=DESKTOP-EVLGQHH\\SQLEXPRESS;Initial Catalog=project;Integrated Security=True";
-            string query = "SELECT CategoryName FROM pc WHERE CategoryID = @CategoryID";
+            string query = "SELECT * FROM pc WHERE CategoryID = @CategoryID";
 
             try
             {
@@ -76,6 +79,7 @@ namespace CAT
                         if (reader.Read())
                         {
                             txtProductName.Text = reader["CategoryName"].ToString();
+                            ddltypes.SelectedItem.Text = reader["types"].ToString();
                         }
                     }
                 }

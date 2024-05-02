@@ -42,6 +42,15 @@ namespace CAT
         protected global::System.Web.UI.WebControls.TextBox txtProductName;
 
         /// <summary>
+        /// ddltypes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddltypes;
+
+        /// <summary>
         /// btnupdatepc control.
         /// </summary>
         /// <remarks>
